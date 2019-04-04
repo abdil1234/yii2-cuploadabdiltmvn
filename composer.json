@@ -17,5 +17,11 @@
         "psr-4": {
             "abdiltmvn\\Cupload\\": ""
         }
-    }
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/abdil1234/yii2-cuploadabdiltmvn"
+        }
+    ]
 }
