@@ -1,0 +1,27 @@
+{
+    "name": "abdilltmvn/yii2-cuploadabdiltmvn",
+    "description": "purpose for upload file throught different hosts",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "abdil tmvn",
+            "email": "abdiillah98@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "abdiltmvn\\Cupload\\": ""
+        }
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/abdil1234/yii2-cuploadabdiltmvn"
+        }
+    ]
+}
