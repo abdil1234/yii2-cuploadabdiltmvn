@@ -2,7 +2,6 @@
 namespace abdiltmvn\Cupload;
 
 use yii\base\Model;
-use yii\web\UploadedFile;
 
 class UploadHelper extends Model
 {
@@ -10,6 +9,8 @@ class UploadHelper extends Model
     public $file;
 
     public $filename;
+
+    public $folderPath;
 
     public function rules()
     {
@@ -22,11 +23,15 @@ class UploadHelper extends Model
     public function upload()
     {
         if ($this->validate()) {
-            $dir = \Yii::getAlias("@common/upload/");
+            $dir = \Yii::getAlias($this->folderPath);
             $this->file->saveAs($dir . $this->filename . '.' . $this->file->extension, false);
             return true;
         } else {
             return false;
         }
+    }
+
+    private function createUploadFolder(){
+        
     }
 }

@@ -4,7 +4,6 @@ namespace abdiltmvn\Cupload;
 use abdiltmvn\Cupload\UploadInterface;
 use Yii;
 use abdiltmvn\Cupload\helper\UploadHelper;
-use abdiltmvn\Cupload\UploadedFileModel;
 use yii\web\UploadedFile;
 use yii\bootstrap\ActiveForm;
 
@@ -13,23 +12,49 @@ use yii\bootstrap\ActiveForm;
  */
 class ServerUpload implements UploadInterface
 {
+    /**
+     * current Db connection that usage as store data file to database 
+     */
+
+    public $db = "db";
+
+    /**
+     * whether a file store to $db
+     */
+    public $save = true;
     
-    public $path = null;
+    public $path = "@common/upload/";
+
+    /**
+     * Attributes @default value file
+     */
 
     public $attributes = 'file';
 
+    /**
+     * Status of the file was uploaded
+     */
+
     public $status = false;
 
-    public $dataUpload = [];
+    /**
+     * Array of file information
+     */
 
-    public $pesan = "Data Berhasil masuk";
+    private $dataUpload = [];
+
+    /**
+     * Message when an upload was success
+     */
+
+    private $pesan = "Data Berhasil masuk";
+
 
     public function uploadServer()
     {
 
         $data = Yii::$app->request->post();
         $upload = new UploadHelper();
-        $mdmUpload = new UploadedFileModel();
 
         $file = UploadedFile::getInstanceByName($this->attributes);
         $pesan = null;
@@ -37,22 +62,17 @@ class ServerUpload implements UploadInterface
         if($file){
             $upload->filename = md5(microtime() . $file->name);
             $upload->file = $file;
+            $upload->folderPath = $this->path;
         }
 
         $fields = [$this->attributes];
-        $connection = Yii::$app->db;
+        $connection = Yii::$app->{$db};
         $transaction = $connection->beginTransaction();
 
         try{
             if(Yii::$app->api->validateFormData($data, $fields)  && $upload->upload()){
                 $filename = Yii::getAlias($this->path.$upload->filename.'.'. $upload->file->extension);
-                $mdmUpload->name = $file->name;
-                $mdmUpload->filename = $filename;
-                $mdmUpload->name = $file->name;
-                $mdmUpload->size = $file->size;
-                $mdmUpload->type = $file->type;
-                $mdmUpload->save();
-
+                
                 $this->status = true;
                 $this->dataUpload = $model;
                 $this->path = $filename;
