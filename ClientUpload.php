@@ -6,7 +6,7 @@ use yii\httpclient\Client;
 /**
  * This is just an example.
  */
-class ClientUpload implements UploadInterface
+class ClientUpload implements UploadClientInterface
 {
     public $attribute;
 
@@ -14,7 +14,6 @@ class ClientUpload implements UploadInterface
 
     public $pathfile;
 
-    private $uploadStatus = false;
 
     public function __construct($dataUpload) {
         $this->attribute = $dataUpload['attr'];
@@ -33,9 +32,6 @@ class ClientUpload implements UploadInterface
         ->addFile($this->attribute, $this->pathfile)
         ->send();
 
-        if($upload){
-            $this->uploadStatus = $upload;
-        }
-        return $this->uploadStatus;
+        return $upload;
     }
 }

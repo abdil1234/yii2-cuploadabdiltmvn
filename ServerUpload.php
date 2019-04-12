@@ -1,7 +1,7 @@
 <?php
 
 namespace abdiltmvn\Cupload;
-use abdiltmvn\Cupload\UploadInterface;
+use abdiltmvn\Cupload\UploadServerInterface;
 use Yii;
 use abdiltmvn\Cupload\helper\UploadHelper;
 use yii\web\UploadedFile;
@@ -10,40 +10,49 @@ use yii\bootstrap\ActiveForm;
 /**
  * This is just an example.
  */
-class ServerUpload implements UploadInterface
+class ServerUpload implements UploadServerInterface
 {
     /**
+     * @var string 
      * current Db connection that usage as store data file to database 
      */
 
     public $db = "db";
 
     /**
+     * @var boolean
      * whether a file store to $db
      */
     public $save = true;
     
+    /**
+     * @var string
+     */
     public $path = "@common/upload/";
 
     /**
+     * @var string
      * Attributes @default value file
      */
 
     public $attributes = 'file';
 
     /**
+     * @var boolean
      * Status of the file was uploaded
      */
 
     public $status = false;
 
     /**
+     * @var array
      * Array of file information
      */
 
     private $dataUpload = [];
 
     /**
+     * @var string
      * Message when an upload was success
      */
 

@@ -5,7 +5,7 @@ namespace abdiltmvn\Cupload;
 /**
  * This is just an example.
  */
-interface UploadInterface
+interface UploadServerInterface
 {
     /**
      * method for upload file as the server side
@@ -13,11 +13,4 @@ interface UploadInterface
      */
 
     public function uploadServer();
-
-    /**
-     * method for upload file as the client side
-     * @return boolean
-     */
-
-    public function uploadClient();
 }

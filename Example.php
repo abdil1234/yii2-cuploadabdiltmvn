@@ -1,6 +1,7 @@
 <?php
 
 namespace abdiltmvn\Cupload;
+require __DIR__ . '/vendor/autoload.php';
 use Yii;
 use yii\web\Controller;
 
