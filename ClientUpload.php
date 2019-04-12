@@ -16,6 +16,7 @@ class ClientUpload implements UploadClientInterface
 
 
     public function __construct($dataUpload) {
+        
         $this->attribute = $dataUpload['attr'];
         $this->url = $dataUpload['url'];
         $this->pathfile = $dataUpload['path'];
