@@ -21,10 +21,9 @@ class ClientUpload implements UploadClientInterface
         $this->url = $dataUpload['url'];
         $this->pathfile = $dataUpload['path'];
 
-        $this->uploadClient();
     }
 
-    protected function uploadClient(){
+    public function uploadClient(){
         $http = new Client();
 
         $upload = $http->createRequest()
