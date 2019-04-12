@@ -6,6 +6,7 @@ use Yii;
 use abdiltmvn\Cupload\helper\UploadHelper;
 use yii\web\UploadedFile;
 use yii\bootstrap\ActiveForm;
+use yii\web\Response;
 
 /**
  * This is just an example.
@@ -75,15 +76,15 @@ class ServerUpload implements UploadServerInterface
         }
 
         $fields = [$this->attributes];
-        $connection = Yii::$app->{$db};
+        $connection = Yii::$app->{$this->db};
         $transaction = $connection->beginTransaction();
 
         try{
-            if(Yii::$app->api->validateFormData($data, $fields)  && $upload->upload()){
+            if($upload->upload()){
                 $filename = Yii::getAlias($this->path.$upload->filename.'.'. $upload->file->extension);
                 
                 $this->status = true;
-                $this->dataUpload = $model;
+                $this->dataUpload = $file;
                 $this->path = $filename;
 
                 $pesan = $this->pesan;

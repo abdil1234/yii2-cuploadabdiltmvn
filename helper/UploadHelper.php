@@ -1,5 +1,5 @@
 <?php
-namespace abdiltmvn\Cupload;
+namespace abdiltmvn\Cupload\helper;
 
 use yii\base\Model;
 use yii\helpers\FileHelper;
@@ -35,6 +35,6 @@ class UploadHelper extends Model
     }
 
     private function createUploadFolder() : bool{
-        return FileHelper::createDirectory($this->folderPath, $mode = 0775, $recursive = true);
+        return FileHelper::createDirectory(\Yii::getAlias($this->folderPath), $mode = 0775, $recursive = true);
     }
 }
