@@ -1,4 +1,4 @@
-Upload over different hosts
+Upload a file accros different hosts
 ===========================
 purpose for upload file throught different hosts
 
@@ -22,7 +22,8 @@ or add
 to the require section of your `composer.json` file.
 
 
-Status
+TODO
 -----
 
-Under construction (- ___-)
+ - Allow save a file on server and client side
+ -  Add more documentacion 
