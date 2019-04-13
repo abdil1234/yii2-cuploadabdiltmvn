@@ -55,7 +55,7 @@ $serverUpload = new ServerUpload();
 Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
 
 return [
-    'dataUpload' => $data->uploadServer()
+    'dataUpload' => $serverUpload->uploadServer()
 ]; // return json data 
 ```
 
