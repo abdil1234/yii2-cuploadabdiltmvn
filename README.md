@@ -22,8 +22,30 @@ or add
 to the require section of your `composer.json` file.
 
 
-TODO
+USAGE : 
+-----
+### client side
+```
+use abdiltmvn\Cupload\ClientUpload;
+
+$upload = new ClientUpload([
+    'attr' => 'file',
+    'url' => 'http://url.test/backend/site/upload',
+    'path' => Yii::getAlias("@common/uploads/file.pdf")
+]);
+
+return $upload->uploadClient()->data; //return array data
+``` 
+### server side
+use abdiltmvn\Cupload\ServerUpload;
+
+$serverUpload = new ServerUpload();
+
+return [
+    'dataUpload' => $data->uploadServer()
+]; // return array data 
+
+ TODO
 -----
 
- - Allow save a file on server and client side
  -  Add more documentacion 
