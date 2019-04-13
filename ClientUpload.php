@@ -4,8 +4,9 @@ namespace abdiltmvn\Cupload;
 use yii\httpclient\Client;
 
 /**
- * This is just an example.
+ * @author Abdillah  <abdiillah98@@gmail.com>
  */
+
 class ClientUpload implements UploadClientInterface
 {
     public $attribute;
