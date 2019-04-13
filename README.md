@@ -59,3 +59,4 @@ return [
 -----
 
  -  Add more documentacion 
+ - Release to stable version (still experimental)
