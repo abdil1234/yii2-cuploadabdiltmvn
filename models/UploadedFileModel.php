@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace abdiltmvn\Cupload\models;
 
 use Yii;
 

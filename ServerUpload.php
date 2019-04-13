@@ -1,12 +1,14 @@
 <?php
 
 namespace abdiltmvn\Cupload;
-use abdiltmvn\Cupload\UploadServerInterface;
 use Yii;
-use abdiltmvn\Cupload\helper\UploadHelper;
 use yii\web\UploadedFile;
 use yii\bootstrap\ActiveForm;
 use yii\web\Response;
+
+use abdiltmvn\Cupload\UploadServerInterface;
+use abdiltmvn\Cupload\model\UploadedFileModel;
+use abdiltmvn\Cupload\helper\UploadHelper;
 
 /**
  * This is just an example.
@@ -68,6 +70,7 @@ class ServerUpload implements UploadServerInterface
 
         $file = UploadedFile::getInstanceByName($this->attributes);
         $pesan = null;
+        $id_file = null;
 
         if($file){
             $upload->filename = md5(microtime() . $file->name);
@@ -76,41 +79,46 @@ class ServerUpload implements UploadServerInterface
         }
 
         $fields = [$this->attributes];
-        $connection = Yii::$app->{$this->db};
-        $transaction = $connection->beginTransaction();
 
-        try{
-            if($upload->upload()){
-                $filename = Yii::getAlias($this->path.$upload->filename.'.'. $upload->file->extension);
-                
-                $this->status = true;
-                $this->dataUpload = $file;
-                $this->path = $filename;
+        if($upload->upload()){
+            $filename = Yii::getAlias($this->path.$upload->filename.'.'. $upload->file->extension);
+            
+            $this->status = true;
+            $this->dataUpload = $file;
+            $this->path = $filename;
 
-                $pesan = $this->pesan;
-
-                $transaction->commit();
-                
-                
-            }else{
-                $pesan = ActiveForm::validate($upload);
+            $pesan = $this->pesan;
+            
+            if($this->save){
+                $id_file = $this->saveToDb();
             }
 
-            Yii::$app->response->format = Response::FORMAT_JSON;
-    
-            return [
-                'status' =>  $this->status,
-                'data' => $this->dataUpload,
-                'pesan' => $pesan,
-                'path' => $this->path
-            ]; 
-
-        }catch (\Exception $e) {
-            $transaction->rollBack();
-            throw $e;
-        } catch (\Throwable $e) {
-            $transaction->rollBack();
-            throw $e;
+        }else{
+            $pesan = ActiveForm::validate($upload);
         }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return [
+            'status' =>  $this->status,
+            'data' => $this->dataUpload,
+            'pesan' => $pesan,
+            'path' => $this->path,
+            'id_file' => $id_file
+        ]; 
+    }
+
+    protected function saveToDb() : int {
+
+        $mdmUpload = new UploadedFileModel();
+        $mdmUpload->name = $this->dataUpload->name;
+        $mdmUpload->filename = $this->path;
+        $mdmUpload->name = $this->dataUpload->name;
+        $mdmUpload->size = $this->dataUpload->size;
+        $mdmUpload->type = $this->dataUpload->type;
+        $mdmUpload->save();
+
+        return $mdmUpload->id;
+
     }
 }
