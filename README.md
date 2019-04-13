@@ -1,4 +1,4 @@
-Upload a file accros different hosts
+Upload a file on different hosts
 ===========================
 purpose for upload file throught different hosts
 
