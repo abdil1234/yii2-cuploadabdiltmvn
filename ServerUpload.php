@@ -11,8 +11,9 @@ use abdiltmvn\Cupload\models\UploadedFileModel;
 use abdiltmvn\Cupload\helper\UploadHelper;
 
 /**
- * This is just an example.
+ * @author Abdillah  <abdiillah98@@gmail.com>
  */
+
 class ServerUpload implements UploadServerInterface
 {
     /**
