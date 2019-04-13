@@ -24,8 +24,15 @@ to the require section of your `composer.json` file.
 
 USAGE : 
 -----
-### client side
+Once the extension is installed.
+Prepare required table by execute yii migrate.
+
 ```
+yii migrate --migrationPath=@abdiltmvn/Cupload/migrations
+```
+
+### client side
+```php
 use abdiltmvn\Cupload\ClientUpload;
 
 $upload = new ClientUpload([
@@ -36,6 +43,7 @@ $upload = new ClientUpload([
 
 return $upload->uploadClient()->data; //return array data
 ``` 
+``` php
 ### server side
 use abdiltmvn\Cupload\ServerUpload;
 
@@ -44,6 +52,7 @@ $serverUpload = new ServerUpload();
 return [
     'dataUpload' => $data->uploadServer()
 ]; // return array data 
+```
 
  TODO
 -----
