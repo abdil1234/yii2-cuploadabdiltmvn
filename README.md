@@ -43,8 +43,9 @@ $upload = new ClientUpload([
 
 return $upload->uploadClient()->data; //return array data
 ``` 
-``` php
 ### server side
+
+``` php
 use abdiltmvn\Cupload\ServerUpload;
 
 $serverUpload = new ServerUpload();
