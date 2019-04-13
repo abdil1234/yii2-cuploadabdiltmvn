@@ -41,7 +41,9 @@ $upload = new ClientUpload([
     'path' => Yii::getAlias("@common/uploads/file.pdf")
 ]);
 
-return $upload->uploadClient()->data; //return array data
+Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+
+return $upload->uploadClient()->data; //return json data
 ``` 
 ### server side
 
@@ -50,9 +52,11 @@ use abdiltmvn\Cupload\ServerUpload;
 
 $serverUpload = new ServerUpload();
 
+Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+
 return [
     'dataUpload' => $data->uploadServer()
-]; // return array data 
+]; // return json data 
 ```
 
  TODO
