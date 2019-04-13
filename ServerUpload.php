@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm;
 use yii\web\Response;
 
 use abdiltmvn\Cupload\UploadServerInterface;
-use abdiltmvn\Cupload\model\UploadedFileModel;
+use abdiltmvn\Cupload\models\UploadedFileModel;
 use abdiltmvn\Cupload\helper\UploadHelper;
 
 /**
