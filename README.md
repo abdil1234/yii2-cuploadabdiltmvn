@@ -1,6 +1,6 @@
 Upload a file on different hosts
 ===========================
-Yii2 extension that purpose for upload file throught different hosts ( *`particulary for my ordinary task XD; `* )
+Yii2 extension that purpose for upload file through different hosts ( *`particulary for my ordinary task XD; `* )
 
 Installation
 ------------
