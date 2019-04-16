@@ -38,7 +38,7 @@ use abdiltmvn\Cupload\ClientUpload;
 $upload = new ClientUpload([
     'attr' => 'file',
     'url' => 'http://url.test/backend/site/upload',
-    'path' => \Yii::getAlias("@common/uploads/file.pdf")
+    'path' => \Yii::getAlias("@common/uploads/file.pdf") //$model->file
 ]);
 
 \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
