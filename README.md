@@ -62,5 +62,5 @@ return [
  TODO
 -----
 
- -  Add more documentacion 
+ -  Add more documentation 
  - Release to stable version ( *`still experimental`* )
